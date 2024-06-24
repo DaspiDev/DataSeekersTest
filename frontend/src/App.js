@@ -4,6 +4,9 @@ import PageHeader from './components/PageHeader';
 import Users from './components/Users';
 import './App.css';
 import UserForm from './components/UserForm';
+import ConnectUser from './components/ConnectUser';
+import Connections from './components/Connections';
+import Stats from './components/Stats';
 
 function App() {
     const [page, setPage] = useState('users');
@@ -31,6 +34,22 @@ function App() {
             {
                 page === 'addUser' && 
                     <UserForm closeForm={() => setPage('users')}/>
+            }
+            {
+                page === 'connections' && 
+                    <Connections
+                        list={users}/>
+            }
+            {
+                page === 'addConnection' && 
+                    <ConnectUser
+                        list={users}  
+                        closeForm={() => setPage('users')}/>
+            }
+            {
+                page === 'stats' && 
+                    <Stats
+                        list={users}/>
             }
         </div>
     );

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { PlusOutlined, ShrinkOutlined, TeamOutlined, BarChartOutlined } from '@ant-design/icons';
+import { PlusOutlined, ShrinkOutlined, TeamOutlined, BarChartOutlined, ApiOutlined } from '@ant-design/icons';
 import { Menu } from 'antd';
 
 const items = [
@@ -14,9 +14,14 @@ const items = [
       icon: <PlusOutlined />,
     },
     {
+      label: 'Connections',
+      key: 'connections',
+      icon: <ShrinkOutlined />,
+    },
+    {
       label: 'Add connection',
       key: 'addConnection',
-      icon: <ShrinkOutlined />,
+      icon: <ApiOutlined />,
     },
     {
       label: 'Stats',

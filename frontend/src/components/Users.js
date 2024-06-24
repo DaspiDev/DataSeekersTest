@@ -7,7 +7,7 @@ const Users = ({list, connectUser, setConnectingUser}) => {
         connectUser()
     }
     return (
-        <Flex gap="middle" wrap justify="space-between">
+        <Flex gap="middle" wrap justify="flex-start">
             {list.map((e, idx) => (
                 <Card
                     title={e.name}

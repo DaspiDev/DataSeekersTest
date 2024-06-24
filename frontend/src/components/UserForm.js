@@ -4,7 +4,6 @@ import { Form, Input, Button, InputNumber } from "antd";
 
 const UserForm = ({closeForm}) => {
     const onFinish = (values) => {
-        console.info('VALUES', values);
         axios.post('http://localhost:5000/users', values)
             .then(response => {
                 closeForm();
