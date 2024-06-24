@@ -16,6 +16,8 @@ db = mongo.db.users
 def createUser():
     id = db.insert_one({
         'name': request.json['name'],
+        'age': request.json['age'],
+        'email': request.json['email'],
         'connections': []
     })
     return jsonify(str(id.inserted_id))
@@ -27,6 +29,8 @@ def getUsers():
         users.append({
             '_id': str(ObjectId(doc['_id'])),
             'name': doc['name'],
+            'age': doc['age'],
+            'email': doc['email'],
             'connections': str(doc['connections'])
         })
     return jsonify(users)
@@ -41,10 +45,14 @@ def connectUsers(id, id2):
     connections2.append(user1['_id']) if user1['_id'] not in connections2 else connections2
     db.update_one({'_id': ObjectId(id)}, {"$set": {
         'name': user1['name'],
+        'age': user1['age'],
+        'email': user1['email'],
         'connections': connections1
     }})
     db.update_one({'_id': ObjectId(id2)}, {"$set": {
         'name': user2['name'],
+        'age': user2['age'],
+        'email': user2['email'],
         'connections': connections2
     }})
     return jsonify({'message': 'Users connected'})
@@ -53,9 +61,11 @@ def connectUsers(id, id2):
 def getUser(id):
     user = db.find_one({'_id': ObjectId(id)})
     return jsonify({
-      '_id': str(ObjectId(user['_id'])),
-      'name': user['name'],
-      'connections': str(user['connections'])
+        '_id': str(ObjectId(user['_id'])),
+        'name': user['name'],
+        'age': user['age'],
+        'email': user['email'],
+        'connections': str(user['connections'])
   })
 
 @backend.route('/userConnections/<id>', methods=['GET'])
@@ -67,6 +77,8 @@ def getUserConnections(id):
         connections.append({
             '_id': str(connected['_id']),
             'name': connected['name'],
+            'age': connected['age'],
+            'email': connected['email'],
             'connections': str(connected['connections'])
         })
     return jsonify(connections)
